@@ -1,0 +1,73 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #6C63FF;
+  --color-secondary: #FF6584;
+  --color-accent: #00D2FF;
+  --color-dark-bg: #0F0F23;
+  --color-dark-bg2: #1A1A2E;
+  --color-dark-bg3: #16213E;
+  
+  --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  body {
+    @apply bg-dark-bg text-white font-sans overflow-x-hidden;
+    scroll-behavior: smooth;
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-dark-bg;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, var(--color-primary), var(--color-secondary));
+    @apply rounded-full;
+  }
+}
+
+@layer components {
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-linear-to-r from-primary to-secondary;
+  }
+  
+  .glass-card {
+    @apply bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl transition-all duration-300;
+  }
+  
+  .glass-card:hover {
+    @apply -translate-y-2 border-primary/50 shadow-[0_10px_30px_-10px_rgba(108,99,255,0.3)];
+  }
+
+  .btn-primary {
+    @apply px-8 py-3 rounded-full bg-linear-to-r from-primary to-secondary font-semibold transition-transform active:scale-95 hover:shadow-lg hover:shadow-primary/20;
+  }
+
+  .btn-outline {
+    @apply px-8 py-3 rounded-full border-2 border-primary text-primary font-semibold transition-all hover:bg-primary hover:text-white;
+  }
+}
+
+/* Animations */
+@keyframes pulse-green {
+  0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+  70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+
+.animate-pulse-green {
+  animation: pulse-green 2s infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
